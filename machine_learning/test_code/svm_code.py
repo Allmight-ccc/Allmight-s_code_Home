@@ -11,6 +11,7 @@ from sklearn.datasets import load_breast_cancer
 
 data_set = load_breast_cancer()
 
+
 X = data_set.data  # feature
 feature_names = data_set.feature_names
 y = data_set.target  # label
