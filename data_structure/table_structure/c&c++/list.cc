@@ -27,19 +27,46 @@ void init_list(list* l) {
     }
 }
 
-void delete_list(list* l, int pos) {
-    
+bool delete_list(list* l, int index) {
+    if(index > l->size && index < 0) return false;
+
+    // 删除元素
+    for(int i = index; i < l->size; ++i) {
+        l->data[i] = l->data[i+1];
+    }
+    l->size--;
+    return true;
 }
 
+bool update_list(list* l, int index, int data) {
+    if(index > l->size && index < 0) return false;
+
+    l->data[index] = data;
+    return true;
+}
+
+// 返回最先找到该数据的索引
+int find_element(list* l, int data) {
+    int index = 0;
+    while (l->data[index++] != data);
+    return (index < l->size) ? index : -1;
+}
+
+// 打印list
 void print(list* l) {
     for(int i = 0; i < l->size; ++i) {
-        cout << l->data[i] << endl;
+        cout << l->data[i] << " ";
     }
+    cout << endl;
 }
 
 int main() {
     list* l = new list[sizeof(list)];
     init_list(l);
     print(l);
+    delete_list(l, 0);
+    print(l);
+
+    cout << find_element(l, 100) << endl;
     return 0;
 }
