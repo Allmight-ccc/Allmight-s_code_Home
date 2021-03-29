@@ -13,7 +13,7 @@ struct list {
 };
 
 list* init_list() {
-    
+    list* list = new list[sizeof(list)];
 }
 
 int main() {
