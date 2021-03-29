@@ -9,6 +9,7 @@ struct stack {
     int top;
 };
 
+// init a stack
 stack* init_stack() {
     stack *s = new stack[sizeof(stack)];
     s->data = new int[MAXSIZE];
