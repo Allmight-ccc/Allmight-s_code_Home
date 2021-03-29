@@ -23,6 +23,7 @@ void insert_node(linkdList l, int data) {
     n->next = NULL;
 }
 
+// ToDo
 void delete_node(linkdList l, int data) {
     node* p = l->next;
     while (p) {
