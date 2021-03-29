@@ -40,8 +40,6 @@ int main() {
         push(q, data);
     }
     print_queue(q);
-    
-
 
     while (true) {
         data = pop(q);
