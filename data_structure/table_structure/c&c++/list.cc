@@ -48,8 +48,8 @@ bool update_list(list* l, int index, int data) {
 // 返回最先找到该数据的索引
 int find_element(list* l, int data) {
     int index = 0;
-    while (l->data[index++] != data);
-    return (index < l->size) ? index : -1;
+    while (l->data[index++] != data && index <= l->size);
+    return (index == l->size+1) ? -1 : index-1;
 }
 
 // 打印list
