@@ -12,11 +12,34 @@ struct list {
     int size;
 };
 
-list* init_list() {
-    list* l = new list[sizeof(list)];
+void init_list(list* l) {
+    l->data = new int[MAXSIZE];
+    l->size = 0;
+    // input data by hands
+    while (true)
+    {
+        int data;
+        cout << ">>> ";
+        cin >> data;
+        if(data == -1) break;
+        // insert data
+        l->data[l->size++] = data;
+    }
+}
+
+void delete_list(list* l, int pos) {
+    
+}
+
+void print(list* l) {
+    for(int i = 0; i < l->size; ++i) {
+        cout << l->data[i] << endl;
+    }
 }
 
 int main() {
-
+    list* l = new list[sizeof(list)];
+    init_list(l);
+    print(l);
     return 0;
 }
