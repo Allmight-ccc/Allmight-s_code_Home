@@ -7,19 +7,6 @@
 @FILE: 6.3.py
 '''
 
-import decision_tree
-import pandas as pd
-from pybrain.utilities import percentError
-from pybrain.supervised.trainers import BackpropTrainer
-from pybrain.structure.modules import SoftmaxLayer
-from pybrain.tools.shortcuts import buildNetwork
-from pybrain.datasets import ClassificationDataSet  # 分类数据专用数据集工具包
-import numpy as np
-from sklearn import svm
-from sklearn import metrics
-from sklearn.model_selection import train_test_split
-from sklearn import preprocessing
-import matplotlib.pyplot as plt
 from sklearn.datasets import load_breast_cancer
 
 data_set = load_breast_cancer()
