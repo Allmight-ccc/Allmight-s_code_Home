@@ -35,11 +35,34 @@ void delete_node(linkdList l, int data) {
     }
 }
 
-void update_node(linkdList l, int data) {
-
+void update_node(linkdList l, int data, int new_data) {
+    node* p = l->next;
+    while (p) {
+        if(p->data == data) {
+            p->data = new_data;
+        }
+        p = p->next;
+    }
 }
 
+node* search_node(linkdList l, int data) {
+    node* n = l->next;
+    while (n) {
+        if(n->data = data) {
+            return n;
+        }
+        n = n->next;
+    }
+    return NULL;
+}
 
+void print_linkdList(linkdList l) {
+    node* n = l;
+    while (n = n->next) {
+        cout << n->data << " ";
+    }
+    cout << endl;
+}
 
 int main() {
     return 0;
