@@ -27,10 +27,10 @@ void insert_node(linkdList l, int data) {
 void delete_node(linkdList l, int data) {
     node* p = l->next;
     while (p) {
-        if(p->next != NULL && p->next->data == data) {
-            //delete code
-        }else if(p->data == data) {
-            
+        if(p->next && p->next->data == data) {
+            node* q = p->next;
+            p->next = q->next;
+            delete(q);
         }
         p = p->next;
     }

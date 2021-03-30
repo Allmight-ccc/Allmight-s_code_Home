@@ -28,7 +28,7 @@ void insert_node(linkList l, int data) {
 void delete_node(linkList l, int data) {
     node* p = l->next;
     while(p) {
-        if(p->next->data == data) {
+        if(p->next && p->next->data == data) {
             node* q = p->next;
             p->next = q->next;
             delete(q);
