@@ -45,6 +45,8 @@ BTNode* createBTNode() {
 
     G->left = NULL;
     G->right = NULL;
+
+    return D;
 }
 
 int main() {
