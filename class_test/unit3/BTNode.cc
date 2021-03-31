@@ -4,7 +4,8 @@ using namespace std;
 
 struct BTNode {
     char data;
-    BTNode *left, *right;
+    BTNode *left;
+    BTNode *right;
 };
 
 BTNode* createBTNode() {
@@ -50,14 +51,67 @@ BTNode* createBTNode() {
 }
 
 void prePrint(BTNode* root) {
-    if(root->left == NULL) return;
+    if(root == NULL) return;
+    cout << root->data << " ";
     prePrint(root->left);
+    prePrint(root->right);
+}
+
+void middlePrint(BTNode* root) {
+    if(root == NULL) return;
+    middlePrint(root->left);
+    cout << root->data << " ";
+    middlePrint(root->right);
+}
+
+void lastPrint(BTNode* root) {
+    if(root == NULL) return;
+    lastPrint(root->left);
+    lastPrint(root->right);
+    cout << root->data << " ";
 }
 
 void insertNode(BTNode* root, int data) {
+    // init node
+    BTNode *node = new BTNode[sizeof(BTNode)];
+    node->data = data;
+    node->left = NULL;
+    node->right = NULL;
+
+    BTNode *temp = root;
+    if(temp == NULL) {
+        temp = node;
+        return;
+    }
+
+    //
+
+    if(temp->left == NULL) {
+        temp->left = node;
+    } else if(temp->right == NULL) {
+        temp->right = node;
+    }
+}
+
+int get_height(BTNode* root) {
+    int result;
+    BTNode* temp = root;
+    for(result = 1; temp = temp->left; ++result);
+    return result;
+}
+
+int get_leave(BTNode* root) {
     
 }
 
 int main() {
+    BTNode* root = createBTNode();
+    prePrint(root);
+    cout << "\n" << endl;
+    middlePrint(root);
+    cout << "\n" << endl;
+    lastPrint(root);
+    cout << "\n" << endl;
+    cout << get_height(root) << endl;
     return 0;
 }
