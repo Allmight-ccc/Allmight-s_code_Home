@@ -49,6 +49,15 @@ BTNode* createBTNode() {
     return D;
 }
 
+void prePrint(BTNode* root) {
+    if(root->left == NULL) return;
+    prePrint(root->left);
+}
+
+void insertNode(BTNode* root, int data) {
+    
+}
+
 int main() {
     return 0;
 }
