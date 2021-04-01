@@ -108,7 +108,7 @@ void locate(BTNode **temp, BTNode *node) {
             return;
         } else locate(&(*temp)->right, node);
     }
-}
+}   // 作业：循环实现定位函数
 
 void createnode(BTNode **root, char vaule) {
     BTNode *node = new BTNode[sizeof(BTNode)];
