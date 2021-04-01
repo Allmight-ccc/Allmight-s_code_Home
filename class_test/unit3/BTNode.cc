@@ -95,7 +95,7 @@ void insertNode(BTNode* root, int data) {
 */
 
 
-// 先确定大小问题，然后确定左右问题
+// 先确定大小问题，然后确定左右问题, 以根节点为起点，找到空位
 void locate(BTNode **temp, BTNode *node) {
     if((int)node->data < (int)(*temp)->data) {
         if((*temp)->left == NULL) {
@@ -120,7 +120,7 @@ void createnode(BTNode **root, char vaule) {
         *root = node;
         return;
     }
-    
+
     BTNode *temp = *root;
     locate(&temp, node);
 }
