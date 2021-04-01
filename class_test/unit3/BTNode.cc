@@ -70,7 +70,7 @@ void lastPrint(BTNode* root) {
     lastPrint(root->right);
     cout << root->data << " ";
 }
-
+/*
 void insertNode(BTNode* root, int data) {
     // init node
     BTNode *node = new BTNode[sizeof(BTNode)];
@@ -91,6 +91,38 @@ void insertNode(BTNode* root, int data) {
     } else if(temp->right == NULL) {
         temp->right = node;
     }
+}
+*/
+
+
+// 先确定大小问题，然后确定左右问题
+void locate(BTNode **temp, BTNode *node) {
+    if((int)node->data < (int)(*temp)->data) {
+        if((*temp)->left == NULL) {
+            (*temp)->left = node;
+            return;
+        } else locate(&(*temp)->left, node);
+    } else {
+        if((*temp)->right == NULL) {
+            (*temp)->right = node;
+            return;
+        } else locate(&(*temp)->right, node);
+    }
+}
+
+void createnode(BTNode **root, char vaule) {
+    BTNode *node = new BTNode[sizeof(BTNode)];
+    node->data = vaule;
+    node->left = NULL;
+    node->right = NULL;
+
+    if(*root == NULL) {
+        *root = node;
+        return;
+    }
+    
+    BTNode *temp = *root;
+    locate(&temp, node);
 }
 
 int get_height(BTNode* root) {
