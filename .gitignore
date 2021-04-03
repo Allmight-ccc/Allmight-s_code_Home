@@ -4,3 +4,4 @@
 *config
 *.MAP
 *.OBJ
+/python_study
