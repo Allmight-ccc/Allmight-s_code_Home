@@ -40,7 +40,7 @@ void sort(int* arr, int size) {
 }
 
 int main() {
-    int arr[] = {54, 34, 21, 213, 100, 97, 333, 249, 1, 43, -132, 67};
+    int arr[] = {54, 34, 21, 213, 100, 43, 333, 249, 1, 43, -132, 67};
     sort(arr, sizeof(arr)/4);
     print_array(arr, sizeof(arr)/4);
     print_array(arr, sizeof(arr)/4, index);
