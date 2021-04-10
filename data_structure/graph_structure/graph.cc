@@ -6,7 +6,6 @@ typedef struct Node {
 
 }Node, *Graph;
 
-
 int main() {
     return 0;
 }
