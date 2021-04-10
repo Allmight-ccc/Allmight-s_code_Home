@@ -32,15 +32,10 @@ void sort(int* arr, int size) {
         min = index[i]-1;
         for(int j = 0; j < size; j++) {
             if(new_arr[j] == 0) continue;
-            if(new_arr[j] < new_arr[min]) {
-                min = j;
-            }
+            if(new_arr[j] < new_arr[min]) min = j;
         }
         index[i] = min;
-        cout << "index[i]: " << index[i] << " i: " << i << endl;
         new_arr[min] = 0;
-        cout << "第" << i << "次排序：";
-        print_array(new_arr, size);
     }
 }
 
