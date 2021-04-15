@@ -157,8 +157,8 @@ def main():
         if y_pred == ytrain[i]:
             n_right += 1
         else:
-            logger.info("该样本真实标签为：{}，但决策树模型的预测标签为：{}".format(ytrain[i], y_pred))
-    logger.info("决策树模型的准确率为：{}%".format(n_right * 100 / n_test))
+            logger.info("the sample's real label is: {}，but the predicted label of model is: {}".format(ytrain[i], y_pred))
+    logger.info("the decisiontree model's accuracy is: {}%".format(n_right * 100 / n_test))
 
 if __name__ == "__main__":
     main()

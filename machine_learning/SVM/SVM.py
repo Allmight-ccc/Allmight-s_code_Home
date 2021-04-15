@@ -1,11 +1,11 @@
 import numpy as np
 from sklearn.model_selection import train_test_split
-from sklearn import svm
+from sklearn import svm as sk_svm
 from sklearn import datasets
 
 
-class svm:
+class SVM:
     def __init__(self):
         pass
 
-    
+
