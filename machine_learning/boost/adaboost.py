@@ -19,8 +19,6 @@ class Adaboost:
         """training of model"""
         num_sample, num_feature = X.shape
         weights = np.ones(num_sample) / num_sample
-        
-
 
     def predict(self, x):
         """predicting of model"""
