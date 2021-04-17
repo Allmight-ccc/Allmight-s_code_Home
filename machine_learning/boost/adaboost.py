@@ -26,8 +26,9 @@ class Adaboost:
         pass
 
 def main():
-    print("hello adaboost")
-    pass
+    parser = argparse.ArgumentParser(description="Adaboost algorithm")
+    parser.add_argument("--ncls", type=int, default=300, help="the number of weakclassifiers")
+
 
 if __name__ == "__main__":
     main()
