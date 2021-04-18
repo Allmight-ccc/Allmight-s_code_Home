@@ -1,4 +1,6 @@
 import numpy as np
+from sklearn.model_selection import train_test_split
+from sklearn import datasets
 
 class Node:
     def __init__(self, feature_index=None, feature_name=None, node_value=None, child=None):
@@ -30,11 +32,24 @@ class DecisionTreeDemo:
         self.root = self.treeGenerate(X, y)
 
     def predict(self, x):
-        pass
+        """预测函数"""
+        return self.predict_impl(x, self.root)
 
-    def predict_impl(self, x):
-        """预测函数辅助函数"""
+    def predict_impl(self, x, tree=None):
+        """预测函数辅助函数, 递归实现"""
+
+        if tree is None:
+            tree = self.root
+        if tree.node_value is not None:
+            return tree.node_value
         
+        feature_index = tree.feature_index
+        for fea_val, child_node in tree.child.items():
+            if x[feature_index] == fea_val:
+                if child_node.node_value is not None:
+                    return child_node.node_value
+                else:
+                    return self.predict_impl(x, child_node)
 
     def treeGenerate(self, X, y):
         """生成决策树"""
@@ -125,7 +140,24 @@ class DecisionTreeDemo:
         return gini_index
 
 def main():
-    pass
+    iris = datasets.load_iris()
+    feature_name = iris["feature_names"]
+
+    xtrain, _, ytrain, _ = train_test_split(iris["data"], iris["target"], train_size=0.8, shuffle=True)
+
+    model = DecisionTreeDemo(feature_name)
+    model.fit(xtrain, ytrain)
+
+    n_test = xtrain.shape[0]
+    n_right = 0
+    for i in range(n_test):
+        y_pred = model.predict(xtrain[i])
+        if y_pred == ytrain[i]:
+            n_right += 1
+        else:
+            print("the sample's real label is: {}，but the predicted label of model is: {}".format(ytrain[i], y_pred))
+    print("the decisionDemo model's accuracy is: {}%".format(n_right * 100 / n_test))
+
 
 if __name__ == "__main__":
     main()
