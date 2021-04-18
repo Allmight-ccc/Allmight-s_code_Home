@@ -1,7 +1,7 @@
 import numpy as np
 
 class Node:
-    def __init__(self, feature_name=None, feature_index=None, node_value=None, child=None):
+    def __init__(self, feature_index=None, feature_name=None, node_value=None, child=None):
         """
             feature_index：特征的索引
             feature_name：特证名
@@ -15,21 +15,26 @@ class Node:
 
 
 class DecisionTreeDemo:
-    def __init__(self, feature_index=None, etype="gain", epsilon=0.1):
+    def __init__(self, feature_name, etype="gain", epsilon=0.1):
         """
             root：代表这个决策树
         """
         self.root = None
-        self.feature_index = feature_index
+        self.feature_name = feature_name
         self.etype = etype
         self.epsilon = epsilon
 
 
     def fit(self, X, y):
-        pass
+        """决策树训练"""
+        self.root = self.treeGenerate(X, y)
 
     def predict(self, x):
         pass
+
+    def predict_impl(self, x):
+        """预测函数辅助函数"""
+        
 
     def treeGenerate(self, X, y):
         """生成决策树"""
@@ -41,9 +46,37 @@ class DecisionTreeDemo:
         if np.unique(y).shape[0] == 1:
             return Node(node_value=y[0])
 
-        #ToDo here
-        if self.etype=="gain":
-            pass
+        # 选取最优属性，划分数据集
+        max_gain = -np.inf
+        num_feature = X.shape[1]
+        max_feature_index = 0
+
+        for i in range(num_feature):
+            if self.etype=="gain":
+                gain = self.gain(X[:, i], y)
+            elif self.etype=="gain_ratio":
+                gain = self.gain_ratio(X[:, i], y)
+            else:
+                gain = -self.calc_gini_index(X[:, i], y)
+            
+            if max_gain < gain:
+                max_gain = gain
+                max_feature_index = i
+        
+        # 特殊情况，不划分数据结构
+        if max_gain < self.epsilon:
+            node_value = self.vote_label(y)
+            return Node(node_value=node_value)
+        
+        feature_name = self.feature_name[max_feature_index]
+        child_tree = dict()
+
+        for fea_val in np.unique(X[:, max_feature_index]):
+            child_X = X[X[:, max_feature_index] == fea_val]
+            child_y = y[X[:, max_feature_index] == fea_val]
+            child_X = np.delete(child_X, max_feature_index, 1)
+            child_tree[fea_val] = self.treeGenerate(child_X, child_y)
+        return Node(max_feature_index, feature_name=feature_name, child=child_tree)
 
     def vote_label(self, y):
         """投票选出合适的label"""
@@ -90,3 +123,9 @@ class DecisionTreeDemo:
             weight = sub_y.shape[0] / y.shape[0]
             gini_index += weight * self.calc_gini(sub_y)
         return gini_index
+
+def main():
+    pass
+
+if __name__ == "__main__":
+    main()
