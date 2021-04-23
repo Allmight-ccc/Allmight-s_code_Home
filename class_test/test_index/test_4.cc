@@ -71,6 +71,17 @@ int main() {
     for(int i = 1; i < 7; ++i) {
         insert_node(tree, str[i]);
     }
+
+    cout << "先根遍历：";
+    prePrint(tree);
+    cout << '\n';
+
+    cout << "中根遍历：";
     middlePrint(tree);
+    cout << '\n';
+
+    cout << "后根遍历：";
+    postPrint(tree);
+    cout << '\n';
     return 0;
 }
