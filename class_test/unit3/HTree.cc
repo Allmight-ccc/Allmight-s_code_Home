@@ -20,8 +20,6 @@ void init(Node **nodes, char *datas, int *weights, int length) {
     }
 }
 
-
-
 void createHalfman() {
 
 }
