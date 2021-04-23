@@ -16,6 +16,7 @@ void init(Node **nodes, char *datas, int *weights, int length) {
         node->weight = weights[i];
         node->left = NULL;
         node->right = NULL;
+        nodes[i] = node;
     }
 }
 
