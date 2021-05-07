@@ -157,7 +157,7 @@ def main():
         if y_pred == ytrain[i]:
             n_right += 1
         else:
-            logger.info("the sample's real label is: {}，but the predicted label of model is: {}".format(ytrain[i], y_pred))
+            logger.info("the sample's real label is: {}, but the predicted label of model is: {}".format(ytrain[i], y_pred))
     logger.info("the decisiontree model's accuracy is: {}%".format(n_right * 100 / n_test))
 
 if __name__ == "__main__":
