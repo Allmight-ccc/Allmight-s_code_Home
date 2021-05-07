@@ -78,7 +78,7 @@ int main() {
         {7, 3, 1, 0}
     };
     int distance[N] = {0};
-    int shape[] = {4, 4};
+    int shape[] = {4, 4};   // 矩阵的形状
     displayMatrix(matrix, shape);   // 显示邻接矩阵
 
     // 起点为A的最短路径
