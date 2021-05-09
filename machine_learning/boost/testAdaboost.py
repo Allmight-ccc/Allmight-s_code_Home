@@ -5,7 +5,7 @@ class DecisionTreeStump:
         """
             feature_index: 划分特征的索引
             feature_value: 划分特征的值
-            threshold_type: 阈值类型，< 或者 >
+            threshold_type: 阈值类型，'<' 或者 '>'
             alpha: 弱分类器的权重
         """
         self.feature_index = None
@@ -31,7 +31,7 @@ class Adaboost:
 
         # 训练弱分类器
         for _ in range(self.ncls):
-            tree_stem = DecisionTreeStump()
+            weak_classifier = DecisionTreeStump()
             # 记录最小误差
             min_error = np.inf
 
@@ -42,8 +42,10 @@ class Adaboost:
                 # 遍历这维特征所有可能的取值
                 for fea_val in feature_value:
                     for threshold_type in ["less", "great"]:
+                        # TODO  the next day
                         pass
-
+    
+    # 决策树桩分类器
     def stump_classifier(self, X, feature_index, feature_value, threshold_type):
         y_pred = np.ones(X.shape[0])
         if threshold_type == "less":
