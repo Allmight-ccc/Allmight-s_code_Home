@@ -45,7 +45,7 @@ class Adaboost:
                         # 获取决策树桩的预测结果
                         y_pred = self.stump_classifier(X, i, fea_val, threshold_type)
 
-                        error_sample = np.ones(num_smaple)
+                        error_sample = np.ones(num_sample)
                         error_sample[y_pred == y] = 0
 
                         # 错误率是样本权重的和
