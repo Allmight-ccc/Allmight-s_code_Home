@@ -13,12 +13,10 @@ void swap(int a, int b) {
 
 void swapVetex(char vetexs[], int VetexSize, int mat[][4], int start) {
     swap(vetexs[0], vetexs[start]);
-
-    for(int i = 0; i < VetexSize; ++i)
-        swap(mat[start][i], mat[0][i]);
-
     for(int i = 0; i < VetexSize; ++i)
         swap(mat[i][start], mat[i][0]);
+    for(int i = 0; i < VetexSize; ++i)
+        swap(mat[start][i], mat[0][i]);
 }
 
 void display(int mat[][4], int rows, int cols) {
