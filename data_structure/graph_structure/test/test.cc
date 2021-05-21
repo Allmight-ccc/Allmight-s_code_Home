@@ -8,6 +8,7 @@ void display(char* v, int* p, int size) {
         cout << v[p[i]] << " ";
     cout << endl;
 }
+
 void display(int* p, int size) {
     for(int i = 0; i < size; ++i)
         cout << p[i] << " ";
