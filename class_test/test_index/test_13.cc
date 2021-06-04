@@ -31,13 +31,14 @@ void display(int p[], int size) {
         cout << p[i] << " ";
     cout << endl;
 }
-// TODO
+
 void arrange(int p[], int first, int last, int size) {
     for(int i = first; i <= last; ++i) {
-        if(i != first) swap(p[first], p[i]); // 依次取每一个元素为前一个元素
-        display(p, size);
+        if(i != first) swap(p[first], p[i]);
+        arrange(p, first+1, last, size);
         if(i != first) swap(p[first], p[i]);
     }
+    if(first == last) display(p, size);
 }
 
 int main() {
