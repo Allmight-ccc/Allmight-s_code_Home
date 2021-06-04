@@ -92,7 +92,11 @@ int main() {
     for(int i = 0; i < N; ++i) {
         swapMatrix(vetexs, N, matrix, i);
         prim(vetexs, matrix, distance, startPoint);
+<<<<<<< HEAD
         display(vetexs, distance, startPoint, N, vetexs[startPoint[i]]);
+=======
+        //display(distance, startPoint, N, vetexs[startPoint[i]]);
+>>>>>>> e65a7d6b4c7ef7d84d4ddf0710fa3f3851e243b9
     }
 
     return 0;
