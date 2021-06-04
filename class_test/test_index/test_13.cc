@@ -22,7 +22,7 @@ void binomia(int n, double p) {
 // 全排列题
 void swap(int& a, int& b) {
     int temp = a;
-    a = b; 
+    a = b;
     b = temp;
 }
 
@@ -43,6 +43,7 @@ void arrange(int p[], int first, int last, int size) {
 
 int main() {
     binomia(12, 0.5);
+    cout << "**********************" << endl;
     int p[] = {1, 2, 3, 4};
     arrange(p, 0, 3, 4);
     return 0;
