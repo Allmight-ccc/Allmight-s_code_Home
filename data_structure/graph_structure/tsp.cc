@@ -61,8 +61,6 @@ void display(int c[][N], int row, int col) {
     }
 }
 
-
-
 int main() {
     char v[] = "ABCD";
     // p是为了邻接矩阵

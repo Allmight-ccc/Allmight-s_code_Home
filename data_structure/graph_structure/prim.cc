@@ -6,7 +6,7 @@ using namespace std;
 #define INF 0x0FFFFFFF
 
 void display(char vetexts[], int distance[], int startPoint[], int size, char word) {
-    cout << "从" << word << "点到" << "" << "的距离为：";
+    cout << "从" << word << "点到各点的距离为：";
     for(int i = 0; i < N; ++i) {
         if(i == N-1) { 
             cout << distance[i] << endl;
@@ -89,13 +89,11 @@ int main() {
     int startPoint[] = {0};
     displayMatrix(matrix, shape);   // 显示邻接矩阵
 
-
     for(int i = 0; i < N; ++i) {
         swapMatrix(vetexs, N, matrix, i);
         prim(vetexs, matrix, distance, startPoint);
-        // display(distance, startPoint, N, vetexs[startPoint[i]]);
+        display(vetexs, distance, startPoint, N, vetexs[startPoint[i]]);
     }
-    
 
     return 0;
 }
