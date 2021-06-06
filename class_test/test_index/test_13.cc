@@ -32,6 +32,12 @@ void display(int p[], int size) {
     cout << endl;
 }
 
+void display_char(char p[], int size) {
+    for(int i = 0; i < size; ++i)
+        cout << p[i] << " ";
+    cout << endl;
+}
+
 void arrange(int p[], int first, int last, int size) {
     for(int i = first; i <= last; ++i) {
         if(i != first) swap(p[first], p[i]);
@@ -41,9 +47,27 @@ void arrange(int p[], int first, int last, int size) {
     if(first == last) display(p, size);
 }
 
+
+// ERROR
+void combinationTest(char charArray[], int size, int index, int count, int maxCount, char result[]) {
+		if (count == maxCount) {
+            display_char(result, count);
+            return;
+        }
+		
+		for (int i = index; i < size; i++) {
+            result[i] = charArray[i];
+			combinationTest(charArray, size, i + 1, count + 1, maxCount, result);
+		}
+}
+
 int main() {
-    binomia(12, 0.5);
-    int p[] = {1, 2, 3, 4};
-    arrange(p, 0, 3, 4);
+    // binomia(12, 0.5);
+    // int p[] = {1, 2, 3, 4};
+    // arrange(p, 0, 3, 4);
+
+    char a[] = "ABCD";
+    char b[3];
+    combinationTest(a, 4, 1, 3, 4, b);
     return 0;
 }
