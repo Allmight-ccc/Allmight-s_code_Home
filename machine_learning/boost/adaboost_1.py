@@ -1,5 +1,6 @@
 import numpy as np
 
+
 class WeakClassifier:
     def __init__(self):
         self.feature_index = None
@@ -15,8 +16,9 @@ class WeakClassifier:
             y_pred = X[X[:, feature_index] <= feature_value] = -1
         else:
             y_pred = X[X[:, feature_index] > feature_value] = -1
-        
+
         return y_pred
+
 
 class Adaboost:
     def __init__(self, ncls):
@@ -24,8 +26,8 @@ class Adaboost:
         self.classifiers = list()
 
     def fit(self, X, y):
-        num_smaple, num_feature = X.shape
-        weights = np.ones(num_sample) / num_smaple  # 更新的时候，也要保证weights的和为1
+        num_sample, num_feature = X.shape
+        weights = np.ones(num_sample) / num_sample  # 更新的时候，也要保证weights的和为1
         for _ in range(self.ncls):  # 迭代出ncls个弱分类器的
             tree_stump = WeakClassifier()
             min_error = np.inf
@@ -39,8 +41,10 @@ class Adaboost:
                         min_error = error
                         tree_stump.feature_index = i
                         tree_stump.feature_value = fea_val
-            y_pred = tree_stump.stump_classifier(X, tree_stump.feature_index, tree_stump.feature_value)
-            tree_stump.alpha = 0.5 * np.log((1 - min_error) / (min_error + 1e-15))
+            y_pred = tree_stump.stump_classifier(
+                X, tree_stump.feature_index, tree_stump.feature_value)
+            tree_stump.alpha = 0.5 * \
+                np.log((1 - min_error) / (min_error + 1e-15))
             weights *= np.exp(-tree_stump.alpha * y * y_pred)
             weights /= np.sum(weights)
             self.classifiers.append(tree_stump)
