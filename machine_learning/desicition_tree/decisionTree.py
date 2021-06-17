@@ -63,7 +63,7 @@ class DecisionTreeClassifier:
         if np.unique(y).shape[0] == 1:  # y只有一种类别
             return TreeNode(node_value=y[0])
 
-        num_feature = X.shape[1] #?
+        num_feature = X.shape[1]
         max_gain = -np.inf
         max_feature_index = 0
         for i in range(num_feature):
