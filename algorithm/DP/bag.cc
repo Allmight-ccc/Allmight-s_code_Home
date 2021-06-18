@@ -53,7 +53,7 @@ void dynamic_with_dim1(int weight[], int price[], int result[], int counts, int 
  *      
  *      参数：同上
 */
-void dynamic_with_dim1_test(int weight[], int price[], int result[], int counts, int volume) {
+void dynamic_with_dim1_final(int weight[], int price[], int result[], int counts, int volume) {
     for(int i = 1; i <= counts; ++i)
         for(int j = volume; j >= weight[i]; --j)
             result[j] = max(result[j], result[j-weight[i]] + price[i]);
@@ -115,7 +115,7 @@ int main() {
 
     // 调用函数3
     int result3[9] = {0};
-    dynamic_with_dim1_test(weight, price, result3, counts, volume);
+    dynamic_with_dim1_final(weight, price, result3, counts, volume);
     display(result3, 9);
     cout << "该背包可装物品的最大价值为：" << result2[8] << endl;
     return 0;
