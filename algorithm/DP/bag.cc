@@ -59,17 +59,6 @@ void dynamic_with_dim1_final(int weight[], int price[], int result[], int counts
             result[j] = max(result[j], result[j-weight[i]] + price[i]);
 }
 
-
-
-
-// void brute_method(int weight[], int price[], int result[][N], int counts, int volume) {
-//     for(int i = 0; i < counts; ++i) {
-//         for(int j = 0; j < volume; ++j) {
-            
-//         }
-//     }
-// }
-
 // 显示二维数组的函数
 void display(int arr[][N], int row, int col) {
     for(int i = 0; i < row; ++i) {
