@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cmath>
 
 using namespace std;
 
@@ -61,25 +62,40 @@ void dynamic_with_dim1(int weight[], int price[], int result[], int counts, int 
             result[j] = (j < weight[i]) ? result[j] : max(result[j], result[j-weight[i]] + price[i]);
 }
 
+// void get_combination(int weight[], int price[], int counts, int combination[][4]) {
+//     int temp[counts] = {0, 1, 2, 3};
+//     for(int i = 1; i <= 4; ++i) {
+//         for(int j = 0; j < pow(2, i-1); ++j) {
+            
+//         }
+//     }
+// }
+
+// void brute_method(int weight[], int price[], int result[][N], int counts, int volume) {
+//     for(int i = 0; i < counts; ++i) {
+//         for(int j = 0; j < volume; ++j) {
+            
+//         }
+//     }
+// }
 
 int main() {
-    int counts = 4, volume = 8;
-    int weight[] = {0, 2, 3, 4, 5};
-    int price[] = {0, 3, 4, 5, 6};
+    int counts = 4, volume = 8;     // 物品的个数和背包的容量
+    int weight[] = {0, 2, 3, 4, 5}; // 物品的重量
+    int price[] = {0, 3, 4, 5, 6};  // 物品的价值
 
     // 调用函数1
-    int result[5][9] = {0};
-    dynamic_with_dim2(weight, price, result, counts, volume);
-    // 显示结果
-    display(result, 5, 9);
-    cout << "该背包可装物品的最大价值为：" << result[4][8] << endl;
+    int result1[5][9] = {0};
+    dynamic_with_dim2(weight, price, result1, counts, volume);
+    display(result1, 5, 9);
+    cout << "该背包可装物品的最大价值为：" << result1[4][8] << endl;
 
-    cout << "\n*******************\n" << endl;
+    cout << "\n***************************\n" << endl;
 
     // 调用函数2
-    int result1[9] = {0};
-    dynamic_with_dim1(weight, price, result1, counts, volume);
-    display(result1, 9);
-    cout << "该背包可装物品的最大价值为：" << result1[8] << endl;
+    int result2[9] = {0};
+    dynamic_with_dim1(weight, price, result2, counts, volume);
+    display(result2, 9);
+    cout << "该背包可装物品的最大价值为：" << result2[8] << endl;
     return 0;
 }

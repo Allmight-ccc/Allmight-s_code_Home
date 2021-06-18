@@ -62,7 +62,6 @@ void combinationTest(char charArray[], int size, int index, int count, int maxCo
 }
 
 int main() {
-<<<<<<< HEAD
     // binomia(12, 0.5);
     // int p[] = {1, 2, 3, 4};
     // arrange(p, 0, 3, 4);
@@ -70,11 +69,5 @@ int main() {
     char a[] = "ABCD";
     char b[3];
     combinationTest(a, 4, 1, 3, 4, b);
-=======
-    binomia(12, 0.5);
-    cout << "**********************" << endl;
-    int p[] = {1, 2, 3, 4};
-    arrange(p, 0, 3, 4);
->>>>>>> 176c58207b3977bc7f53b6fdc7d307d921f1cfcf
     return 0;
 }
