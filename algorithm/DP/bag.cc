@@ -2,15 +2,19 @@
 
 using namespace std;
 
+// 背包的容量，实际为8，第一个元素为0
+#define N 9
+
 // 显示二维数组的函数
-void display(int dim2[5][9], int row, int col) {
+void display(int arr[][N], int row, int col) {
     for(int i = 0; i < row; ++i) {
         for(int j = 0; j < col; ++j)
-            cout << dim2[i][j] << " ";
+            cout << arr[i][j] << " ";
         cout << endl;
     }
 }
 
+// 显示一位数组的函数
 void display(int arr[], int size) {
     for(int i = 0; i < size; ++i)
         cout << arr[i] << " ";
@@ -23,8 +27,9 @@ int max(int a, int b) {
 }
 
 /*
- * 动态解决方法
+ * 动态规划解决方法
  *     状态转移方程：result[i][j] = max(result[i−1][j], result[i−1][j−weight[i]]+price[i]) // j >= weight[i]
+ * 
  *     参数：
  *         - weight[]：物品的重量数组
  *         - price[]：物品的价格数组
@@ -32,26 +37,28 @@ int max(int a, int b) {
  *         - counts：物品的个数
  *         - colume：背包的体积
 */
-void dynamic_with_dim2(int weight[], int price[], int result[5][9], int counts, int volume) {
-    for(int i = 1; i <= counts; ++i) {
-        for(int j = 1; j <= volume; ++j) {
-            if(j < weight[i]) {
-                result[i][j] = result[i-1][j];
-            } else {
-                result[i][j] = max(result[i-1][j], result[i-1][j-weight[i]] + price[i]);
-            }
-        }
-    }
+void dynamic_with_dim2(int weight[], int price[], int result[][N], int counts, int volume) {
+    for(int i = 1; i <= counts; ++i)
+        for(int j = 1; j <= volume; ++j)
+            result[i][j] = (j < weight[i]) ? result[i-1][j] : max(result[i-1][j], result[i-1][j-weight[i]] + price[i]);
 }
 
+/*
+ * 优化版动态规划解决方法：
+ *     
+ *     优化内容：
+ *         使用动态规划方法的存储数组是一个二维数组，大小为M*N，当背包容量和物品数量足够大时，会占用很大的空间。
+ *       在上一个方法中，我们发现result[i][j]的取值实际上只与result[i-1][j]有关，这为我们将二维数组简化成一个
+ *       一维数组提供了可能，简化后的数组的空间为n，也就是背包的容积大小。
+ * 
+ *     状态转移方程：result[j] = (j < weight[i]) ? result[j] : max(result[j], result[j-weight[i]] + price[i])
+ *     
+ *     参数：同上
+*/
 void dynamic_with_dim1(int weight[], int price[], int result[], int counts, int volume) {
-    for(int i = 1; i <= counts; ++i) {
-        for(int j = volume; j > 0; --j) {
-            result[j] = max(result[j], result[j-weight[i]] + price[i]);
-            cout << result[j] << " ";
-        }
-    }
-    cout << endl;
+    for(int i = 1; i <= counts; ++i)
+        for(int j = volume; j > 0; --j)
+            result[j] = (j < weight[i]) ? result[j] : max(result[j], result[j-weight[i]] + price[i]);
 }
 
 
@@ -65,12 +72,14 @@ int main() {
     dynamic_with_dim2(weight, price, result, counts, volume);
     // 显示结果
     display(result, 5, 9);
+    cout << "该背包可装物品的最大价值为：" << result[4][8] << endl;
 
-    cout << "*******************" << endl;
+    cout << "\n*******************\n" << endl;
 
     // 调用函数2
     int result1[9] = {0};
     dynamic_with_dim1(weight, price, result1, counts, volume);
     display(result1, 9);
+    cout << "该背包可装物品的最大价值为：" << result1[8] << endl;
     return 0;
 }
