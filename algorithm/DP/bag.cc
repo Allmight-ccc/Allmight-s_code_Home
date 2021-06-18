@@ -59,14 +59,8 @@ void dynamic_with_dim1_final(int weight[], int price[], int result[], int counts
             result[j] = max(result[j], result[j-weight[i]] + price[i]);
 }
 
-// void get_combination(int weight[], int price[], int counts, int combination[][4]) {
-//     int temp[counts] = {0, 1, 2, 3};
-//     for(int i = 1; i <= 4; ++i) {
-//         for(int j = 0; j < pow(2, i-1); ++j) {
-            
-//         }
-//     }
-// }
+
+
 
 // void brute_method(int weight[], int price[], int result[][N], int counts, int volume) {
 //     for(int i = 0; i < counts; ++i) {

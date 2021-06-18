@@ -48,26 +48,36 @@ void arrange(int p[], int first, int last, int size) {
 }
 
 
-// ERROR
-void combinationTest(char charArray[], int size, int index, int count, int maxCount, char result[]) {
-		if (count == maxCount) {
-            display_char(result, count);
-            return;
-        }
-		
-		for (int i = index; i < size; i++) {
-            result[i] = charArray[i];
-			combinationTest(charArray, size, i + 1, count + 1, maxCount, result);
-		}
+void insert_arr(int arranges[][4], int arr[], int& p) {
+    for(int i = 0; i < 4; ++i)
+        arranges[p][i] = arr[i];
+    p++;
+}
+
+void to_arrange(int id[], int first, int last, int size, int arranges[][4], int& p) {
+    for(int i = first; i <= last; ++i) {
+        if(i != first) swap(id[first], id[i]);
+        to_arrange(id, first+1, last, size, arranges, p);
+        if(i != first) swap(id[first], id[i]);
+    }
+    if(first == last) insert_arr(arranges, id, p);
 }
 
 int main() {
     // binomia(12, 0.5);
-    // int p[] = {1, 2, 3, 4};
-    // arrange(p, 0, 3, 4);
+    int a[] = {1, 2, 3, 4};
+    arrange(a, 0, 3, 4);
 
-    char a[] = "ABCD";
-    char b[3];
-    combinationTest(a, 4, 1, 3, 4, b);
+
+    int p = 0;
+    int arranges[200][4] = {{0}};
+    int id[] = {0, 1, 2, 3};
+    to_arrange(id, 0, 3, 4, arranges, p);
+    for(int i = 0; i < 24; ++i) {
+        for(int j = 0; j < 4; ++j) {
+            cout << arranges[i][j] << " ";
+        }
+        cout << endl;
+    }
     return 0;
 }
