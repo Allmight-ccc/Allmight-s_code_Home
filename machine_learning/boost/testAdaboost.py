@@ -98,10 +98,8 @@ class Adaboost:
 
 
 def main():
-    Adaboost(100)
-    print("Adaboost")
-    DecisionTreeStump()
-    print("DecisionTreeStump")
+    model = Adaboost(100)
+    model.fit()
 
 if __name__ == "__main__":
     main()
