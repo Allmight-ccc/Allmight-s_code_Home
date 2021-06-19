@@ -76,7 +76,7 @@ void display(int arr[], int size) {
 }
 
 int main() {
-    int counts = 4, volume = 8;     // 物品的个数和背包的容量
+        int counts = 4, volume = 8;     // 物品的个数和背包的容量
     int weight[] = {0, 2, 3, 4, 5}; // 物品的重量
     int price[] = {0, 3, 4, 5, 6};  // 物品的价值
 
@@ -86,11 +86,20 @@ int main() {
     display(result1, 5, 9);
     cout << "该背包可装物品的最大价值为：" << result1[4][8] << endl;
 
-    // cout << "*******************" << endl;
+    cout << "\n***************************\n" << endl;
 
     // 调用函数2
-    // int result1[9] = {0};
-    // dynamic_with_dim1(weight, price, result1, counts, volume);
-    // display(result1, 9);
+    int result2[9] = {0};
+    dynamic_with_dim1(weight, price, result2, counts, volume);
+    display(result2, 9);
+    cout << "该背包可装物品的最大价值为：" << result2[8] << endl;
+
+    cout << "\n***************************\n" << endl;
+
+    // 调用函数3
+    int result3[9] = {0};
+    dynamic_with_dim1_final(weight, price, result3, counts, volume);
+    display(result3, 9);
+    cout << "该背包可装物品的最大价值为：" << result2[8] << endl;
     return 0;
 }
