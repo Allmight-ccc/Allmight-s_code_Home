@@ -32,6 +32,12 @@ void display(int p[], int size) {
     cout << endl;
 }
 
+void display_char(char p[], int size) {
+    for(int i = 0; i < size; ++i)
+        cout << p[i] << " ";
+    cout << endl;
+}
+
 void arrange(int p[], int first, int last, int size) {
     for(int i = first; i <= last; ++i) {
         if(i != first) swap(p[first], p[i]);
@@ -41,10 +47,37 @@ void arrange(int p[], int first, int last, int size) {
     if(first == last) display(p, size);
 }
 
+
+void insert_arr(int arranges[][4], int arr[], int& p) {
+    for(int i = 0; i < 4; ++i)
+        arranges[p][i] = arr[i];
+    p++;
+}
+
+void to_arrange(int id[], int first, int last, int size, int arranges[][4], int& p) {
+    for(int i = first; i <= last; ++i) {
+        if(i != first) swap(id[first], id[i]);
+        to_arrange(id, first+1, last, size, arranges, p);
+        if(i != first) swap(id[first], id[i]);
+    }
+    if(first == last) insert_arr(arranges, id, p);
+}
+
 int main() {
-    binomia(12, 0.5);
-    cout << "**********************" << endl;
-    int p[] = {1, 2, 3, 4};
-    arrange(p, 0, 3, 4);
+    // binomia(12, 0.5);
+    int a[] = {1, 2, 3, 4};
+    arrange(a, 0, 3, 4);
+
+
+    int p = 0;
+    int arranges[200][4] = {{0}};
+    int id[] = {0, 1, 2, 3};
+    to_arrange(id, 0, 3, 4, arranges, p);
+    for(int i = 0; i < 24; ++i) {
+        for(int j = 0; j < 4; ++j) {
+            cout << arranges[i][j] << " ";
+        }
+        cout << endl;
+    }
     return 0;
 }
