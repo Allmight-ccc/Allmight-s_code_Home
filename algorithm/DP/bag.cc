@@ -76,7 +76,7 @@ void display(int arr[], int size) {
 }
 
 int main() {
-        int counts = 4, volume = 8;     // 物品的个数和背包的容量
+    int counts = 4, volume = 8;     // 物品的个数和背包的容量
     int weight[] = {0, 2, 3, 4, 5}; // 物品的重量
     int price[] = {0, 3, 4, 5, 6};  // 物品的价值
 
