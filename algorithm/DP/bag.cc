@@ -33,15 +33,9 @@ int max(int a, int b) {
  *         - colume：背包的体积
 */
 void dynamic_with_dim2(int weight[], int price[], int result[5][9], int counts, int volume) {
-    for(int i = 1; i <= counts; ++i) {
-        for(int j = 1; j <= volume; ++j) {
-            if(j < weight[i]) {
-                result[i][j] = result[i-1][j];
-            } else {
-                result[i][j] = max(result[i-1][j], result[i-1][j-weight[i]] + price[i]);
-            }
-        }
-    }
+    for(int i = 1; i <= counts; ++i)
+        for(int j = 1; j <= volume; ++j)
+            result[i][j] = (j < weight[i]) ? result[i-1][j] : max(result[i-1][j], result[i-1][j-weight[i]] + price[i]);
 }
 
 void dynamic_with_dim1(int weight[], int price[], int result[], int counts, int volume) {
@@ -66,11 +60,11 @@ int main() {
     // 显示结果
     display(result, 5, 9);
 
-    cout << "*******************" << endl;
+    // cout << "*******************" << endl;
 
     // 调用函数2
-    int result1[9] = {0};
-    dynamic_with_dim1(weight, price, result1, counts, volume);
-    display(result1, 9);
+    // int result1[9] = {0};
+    // dynamic_with_dim1(weight, price, result1, counts, volume);
+    // display(result1, 9);
     return 0;
 }
