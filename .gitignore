@@ -5,3 +5,4 @@
 *.MAP
 *.OBJ
 /python_study
+/machine_learning/mnist
