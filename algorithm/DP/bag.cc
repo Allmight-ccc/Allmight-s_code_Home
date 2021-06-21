@@ -59,6 +59,11 @@ void dynamic_with_dim1_final(int weight[], int price[], int result[], int counts
             result[j] = max(result[j], result[j-weight[i]] + price[i]);
 }
 
+// 组合
+void combination() {
+
+}
+
 // 显示二维数组的函数
 void display(int arr[][N], int row, int col) {
     for(int i = 0; i < row; ++i) {
