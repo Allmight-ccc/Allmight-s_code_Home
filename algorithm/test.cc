@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <cmath>
 
-#define n 6 // 物品的个数
+#define n 4 // 物品的个数
 
 using namespace std;
 
@@ -43,7 +43,7 @@ void bag(int weight[], int val[], int c, int x[][n]) {
 			    sum_weight += weight[j];
 			    sum_val += val[j];
 			    x[i][j] = 1;
-		    } 
+		    }
 		    d /= 2;     //除2	 
         }
 		if(sum_val > max_val && sum_weight <= c){
@@ -89,8 +89,7 @@ void knapsack33(int w[],int v[],int c,int x[][n]){
 	int maxv=0;
 	int sumw,sumv,max;
 	for (int i = 0; i <pow(2,n); i++) {         
-        sumw=0;
-		sumv=0;
+        sumw=0, sumv=0;
 		int d = i;   //将i转换为n位二进制数      
 		for (int j = 0; j < n; j++){
 		    if(d%2==1){
@@ -115,12 +114,11 @@ void knapsack33(int w[],int v[],int c,int x[][n]){
 }
 
 int main() {
-	int w[]={3, 4, 6, 7, 8, 9};    //物品重量
-	int v[]={13, 9, 9, 15, 17, 19};  //物品价值
-	int c=16;  // 背包容量
-	int x[64][n]={0};
+	int w[]={4, 6, 7, 8};    //零食重量
+	int v[]={9, 9, 15, 17};  //零食价格
+	int c=12;  // 背包容量
+	int x[16][n]={0};
 	knapsack(w,v,c);
     knapsack33(w,v,c, x);
-    bag(w,v,c,x);
     return 0;
 }
