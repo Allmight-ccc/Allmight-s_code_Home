@@ -35,6 +35,18 @@ class SVM:
         alpha_st_kkts, _, _ = self.__kkts()
         return sp.Matrix(sp.solve([*diff_w, diff_b, *alpha_st_kkts], [*self.weights, self.b, *self.alphas]))
 
+    def fix(self):
+        min_solve = 0
+        min_subs = 1e20
+
+        solve = self.__solve()
+        w = solve[:, 0:self.weights.shape[1]]
+        b = solve[:, self.weights.shape[1]]
+        a = solve[:, self.weights.shape[1]+1:solve.shape[1]]
+        for i, j, k in zip(w, b, a):
+            pass
+
+
     def dispay_func(self):
         sp.pprint(self.__objective_func())
         sp.pprint(self.__subject_to_func())
