@@ -35,7 +35,7 @@ class SVM:
         alpha_st_kkts, _, _ = self.__kkts()
         return sp.Matrix(sp.solve([*diff_w, diff_b, *alpha_st_kkts], [*self.weights, self.b, *self.alphas]))
 
-    def fix(self):
+    def fit(self):
         min_solve = 0
         min_subs = 1e20
 
@@ -43,9 +43,10 @@ class SVM:
         w = solve[:, 0:self.weights.shape[1]]
         b = solve[:, self.weights.shape[1]]
         a = solve[:, self.weights.shape[1]+1:solve.shape[1]]
-        for i, j, k in zip(w, b, a):
-            pass
+        r = sp.Matrix([{'w': j[0], 'b': j[1], 'a': j[2]} for j in [[w[i, :], b[i], a[i, :]] for i in range(b.shape[0])]])
 
+        # 带入计算
+        
 
     def dispay_func(self):
         sp.pprint(self.__objective_func())
@@ -70,10 +71,11 @@ def main():
     X = np.array([[3, 3], [4, 3], [1, 1]])
     y = np.array([1, 1, -1])
     svm = SVM(X, y)
-    svm.dispay_func()
-    svm.dispay_diff_func()
-    svm.display_kkts()
-    svm.display_solve()
+    # svm.dispay_func()
+    # svm.dispay_diff_func()
+    # svm.display_kkts()
+    # svm.display_solve()
+    svm.fit()
 
 if __name__ == "__main__":
     main()
