@@ -25,7 +25,7 @@ class SVM:
         return diff_w, diff_b
 
     def __kkts(self):
-        alpha_st_kkts = sp.Matrix(np.diag(np.array([elem for elem in self.alphas.T * self.__subject_to_func().T]).reshape(3, 3)))
+        alpha_st_kkts = sp.Matrix(np.diag(np.array(self.alphas.T * self.__subject_to_func().T))
         alpha_kkts = sp.Matrix([sp.Ge(alpha, 0) for alpha in self.alphas])
         st_kkts = sp.Matrix([sp.Le(st, 0) for st in self.__subject_to_func()])
         return alpha_st_kkts, alpha_kkts, st_kkts
