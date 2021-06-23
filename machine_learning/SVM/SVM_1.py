@@ -17,7 +17,7 @@ class SVM:
         return sp.Matrix([1-yi*(np.sum(self.weights*Xi) + self.b) for yi, Xi in zip(self.y, self.X)])
     
     def __lagrange_func(self):
-        return self.__objective_func() + np.sum([alpha*st for alpha, st in zip(self.alphas, self.__subject_to_func())])
+        return self.__objective_func() + np.sum(self.alphas * self.__subject_to_func())
 
     def __diff_func(self):
         diff_w = sp.Matrix([sp.diff(self.__lagrange_func(), self.weights[i]) for i in range(self.weights.shape[1])])
@@ -25,7 +25,7 @@ class SVM:
         return diff_w, diff_b
 
     def __kkts(self):
-        alpha_st_kkts = sp.Matrix(np.diag(np.array(self.alphas.T * self.__subject_to_func().T))
+        alpha_st_kkts = sp.Matrix(np.diag(np.array(self.alphas.T * self.__subject_to_func().T)))
         alpha_kkts = sp.Matrix([sp.Ge(alpha, 0) for alpha in self.alphas])
         st_kkts = sp.Matrix([sp.Le(st, 0) for st in self.__subject_to_func()])
         return alpha_st_kkts, alpha_kkts, st_kkts
