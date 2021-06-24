@@ -55,17 +55,17 @@ class SVM:
 
     def dispay_diff_func(self):
         diff_w, diff_b = self.__diff_func()
-        sp.pprint(diff_w)
-        sp.pprint(diff_b)
+        print("拉格朗日乘子式w偏导数："), sp.pprint(diff_w)
+        print("拉格朗日乘子式b偏导数："), sp.pprint(diff_b)
     
     def display_kkts(self):
         alpha_st_kkts, alpha_kkts, st_kkts = self.__kkts()
-        sp.pprint(alpha_st_kkts)
-        sp.pprint(alpha_kkts)
-        sp.pprint(st_kkts)
+        print("kkt约束a*(st)："), sp.pprint(alpha_st_kkts)
+        print("kkt约束a："), sp.pprint(alpha_kkts)
+        print("kkt约束st："), sp.pprint(st_kkts)
     
     def display_solve(self):
-        sp.pprint(self.__solve())
+        print("结果："), sp.pprint(self.__solve())
 
 def main():
     X = np.array([[3, 3], [4, 3], [1, 1]])
