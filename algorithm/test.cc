@@ -114,9 +114,9 @@ void knapsack33(int w[],int v[],int c,int x[][n]){
 }
 
 int main() {
-	int w[]={6, 7, 8, 4};    //宝物对应的重量
-	int v[]={9, 15, 17, 21};  //宝物对应的价格
-	int c=12;  // 背包容量
+	int w[]={4, 6, 7, 8, 4, 10};    //宝物对应的重量
+	int v[]={9, 9, 15, 17, 21, 10};  //宝物对应的价格
+	int c=16;  // 挂钩的承重量
 	int x[16][n]={0};
 	knapsack(w,v,c);
     knapsack33(w,v,c, x);

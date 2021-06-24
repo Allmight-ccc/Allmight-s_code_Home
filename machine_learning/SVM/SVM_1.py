@@ -7,8 +7,8 @@ class SVM:
         self.weights = sp.Matrix([sp.symbols('w_0:%d' % X.shape[1])])
         self.b = sp.symbols('b')
 
-        self.X = X;
-        self.y = y;
+        self.X = X
+        self.y = y
 
     def __objective_func(self):
         return np.sum([weight**2 for weight in self.weights]) / 2
@@ -20,7 +20,7 @@ class SVM:
         return self.__objective_func() + np.sum(self.alphas * self.__subject_to_func())
 
     def __diff_func(self):
-        diff_w = sp.Matrix([sp.diff(self.__lagrange_func(), self.weights[i]) for i in range(self.weights.shape[1])])
+        diff_w = sp.Matrix(sp.diff(self.__lagrange_func(), self.weights))
         diff_b = sp.diff(self.__lagrange_func(), self.b)
         return diff_w, diff_b
 
@@ -49,9 +49,9 @@ class SVM:
 
 
     def dispay_func(self):
-        sp.pprint(self.__objective_func())
-        sp.pprint(self.__subject_to_func())
-        sp.pprint(self.__lagrange_func())
+        print("目标函数："), sp.pprint(self.__objective_func())
+        print("约束函数："), sp.pprint(self.__subject_to_func())
+        print("拉格朗日乘子式："), sp.pprint(self.__lagrange_func())
 
     def dispay_diff_func(self):
         diff_w, diff_b = self.__diff_func()
@@ -71,11 +71,11 @@ def main():
     X = np.array([[3, 3], [4, 3], [1, 1]])
     y = np.array([1, 1, -1])
     svm = SVM(X, y)
-    # svm.dispay_func()
-    # svm.dispay_diff_func()
-    # svm.display_kkts()
-    # svm.display_solve()
-    svm.fit()
+    svm.dispay_func()
+    svm.dispay_diff_func()
+    svm.display_kkts()
+    svm.display_solve()
+    # svm.fit()
 
 if __name__ == "__main__":
     main()
