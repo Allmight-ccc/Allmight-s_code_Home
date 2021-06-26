@@ -44,8 +44,23 @@ void test1(int *arr, int size) {
     }
 }
 
+int mul(int n) {
+    return (n > 1) ? n*mul(n-1) : 1;
+}
+
+int add(int n) {
+    return (n > 0) ? n+add(n-1) : 0;
+}
+
+int mul(int n, int m) {
+    return (n > m) ? n*mul(n-1, m) : m;
+}
+
 int main() {
-    int arr[] = {7, 6, 4, 1, 3, 4, 5};
-    test1(arr, sizeof(arr)/4);
+    // int arr[] = {7, 6, 4, 1, 3, 4, 5};
+    // test1(arr, sizeof(arr)/4);
+    cout << add(100) << endl;
+    cout << mul(5) << endl;
+    cout << mul(5, 3) << endl;
     return 0;
 }

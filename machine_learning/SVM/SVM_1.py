@@ -60,11 +60,6 @@ class SVM:
             print(param_dict)
 
             # 比对kkt条件
-            for j in range(alpha_kkts.shape[0]):
-                if not alpha_kkts[j].subs(param_dict):
-                    continue
-            for j in range(st_kkts.shape[0]):
-                if 
         
         # 求得结果
 
