@@ -10,19 +10,19 @@ queue<int> q;  // 用于存储加密后的字符
 void encrypt(char* str, int size) {
 	for(int i = 0; i < size; ++i) {
 		if(str[i] >= 97 && str[i] <= 122)
-			q.push((char)(((int)str[i]-97 + 3) % 26 + 97));
+			q.push((char)((str[i]-97 + 3) % 26 + 97));
 		if(str[i] >= 65 && str[i] <= 90)
-			q.push((char)(((int)str[i]-65 + 3) % 26 + 65));
+			q.push((char)((str[i]-65 + 3) % 26 + 65));
 	}
 }
 
 // 解密函数 
 void decrypt(char* str, int size) {
-	for(int i = 0; i < size; ++i) { 
+	for(int i = 0; i < size; ++i) {
 		if(str[i] >= 97 && str[i] <= 122)
-			q.push((char)(((int)str[i]-97 - 3) % 26 + 97));
+			q.push((char)((str[i]-97 - 3) % 26 + 97));
 		if(str[i] >= 65 && str[i] <= 90) 
-			q.push((char)(((int)str[i]-65 - 3) % 26 + 65));
+			q.push((char)((str[i]-65 - 3) % 26 + 65));
 	}
 }
 

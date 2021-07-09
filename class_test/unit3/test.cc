@@ -56,6 +56,61 @@ int mul(int n, int m) {
     return (n > m) ? n*mul(n-1, m) : m;
 }
 
+
+
+void swap(int a[],int i,int j)
+{
+	int temp=a[i];
+	a[i]=a[j];
+	a[j]=temp;
+}
+
+int getmin(int a[],int n,int i)
+{
+	int min=i;
+	for(int j=i;j<n;j++)
+	if(a[j]<a[min])
+	min=j;
+	return min;
+}
+
+void sort(int a[],int n)
+{
+	for(int i=0;i<n-1;i++)
+	{
+		int min=getmin(a,n,i);
+		swap(a,i,min);
+	}	
+}
+
+
+
+void GetMin(int a[],int len,int * min1,int * min2) {
+	while(a[*min1]==0)(*min1)++,(*min2)++;
+	while(a[*min2]==0)(*min2)++;
+	for(int i=*min2;i<len;i++)
+	if(a[i]!=0) {
+		if(a[i]<a[*min1]) {
+			*min2=*min1;
+			*min1=i;
+		} else if(a[i]<a[*min2])
+			*min2=i;
+	}
+}
+
+//2.再定义一个循环调用求最小值和次小值
+void GetSum(int a[],int len)
+{
+	int min1,min2;
+	for(int i=0;i<len;i++) {
+    min1=0,min2=1;
+	GetMin(a,len,&min1,&min2);
+	a[min1]=a[min1]+a[min2];
+	a[min2]=0;
+    }
+}
+
+
 int main() {
     // int arr[] = {7, 6, 4, 1, 3, 4, 5};
     // test1(arr, sizeof(arr)/4);
